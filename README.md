@@ -32,7 +32,7 @@ cd GAF-Net-for-Video-Based-Person-Re-Identification
 
 # Setup environment (coming soon)
 pip install -r requirements.txt
-
+```
 ## Repository Status
 
 🚧 **Currently under development**
