@@ -32,3 +32,30 @@ cd GAF-Net-for-Video-Based-Person-Re-Identification
 
 # Setup environment (coming soon)
 pip install -r requirements.txt
+
+## Repository Status
+
+🚧 **Currently under development**
+
+- [x] VISAPP 2024 paper published  
+- [x] Core methodology validated
+- [ ] Implementation in progress
+- [ ] Training scripts
+- [ ] Pre-trained models
+- [ ] Evaluation code
+
+## Citation
+
+```bibtex
+@conference{boujou2024gafnet,
+  title={GAF-Net: Video-Based Person Re-Identification via Appearance and Gait Recognitions},
+  author={Boujou, Moncef and Iguernaissi, Rabah and Nicod, Lionel and Merad, Djamal and Dubuisson, Séverine},
+  booktitle={Proceedings of the 19th International Joint Conference on Computer Vision, Imaging and Computer Graphics Theory and Applications - Volume 4: VISAPP},
+  year={2024},
+  pages={870-877},
+  publisher={SciTePress}
+}
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
