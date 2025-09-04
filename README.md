@@ -1,33 +1,34 @@
-# GAF-Net-for-Video-Based-Person-Re-Identification
+# GAF-Net: Video-Based Person Re-Identification via Appearance and Gait Recognitions
+
+[![Paper](https://img.shields.io/badge/Paper-VISAPP%202024-blue)](https://www.scitepress.org/Papers/2024/120749/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+> Implementation of "GAF-Net: Video-Based Person Re-Identification via Appearance and Gait Recognitions" presented at VISAPP 2024.
+
 ## Overview
-This repository contains the source code and additional resources for our paper titled "GAF-Net: Gait-Appearance Fusion Network for Video-Based Person Re-Identification". Our work introduces GAF-Net, a novel approach that integrates appearance with gait features, extracted from skeletal structures, to enhance the performance of person re-identification systems.
 
-## Contents
-- `src/`: Source code of the GAF-Net model.
-- `data/`: Example datasets and instructions on how to prepare the data.
-- `models/`: Pre-trained models and configuration files.
-- `notebooks/`: Jupyter notebooks demonstrating the usage and results of the model.
-- `docs/`: Additional documentation and resources.
+GAF-Net combines skeleton-based gait features with appearance features for video-based person re-identification. This is the first approach to integrate skeletal gait information (rather than silhouettes) with appearance data for Re-ID.
 
-## Installation
-Instructions on setting up the environment and installing dependencies will be provided here.
+### Key Features
+- Novel skeleton-based gait feature extraction using pose estimation
+- Integration with multiple appearance backbones: OSNet, MGH, PiT  
+- Weighted feature fusion approach
+- Evaluation on iLIDS-VID dataset
 
-## Usage
-Detailed instructions on how to use the model, including training and inference processes, will be added.
-
-## Contributing
-Guidelines for contributing to this repository will be available here.
 ## Results
 
+| Method | Dataset | Rank-1 | Rank-5 | 
+|--------|---------|--------|--------|
+| GAF-Net (PiT) | iLIDS-VID | **93.07%** | **99.27%** |
+| GAF-Net (MGH) | iLIDS-VID | 90.40% | 98.66% |
+| GAF-Net (OSNet) | iLIDS-VID | 70.93% | 88.40% |
 
-## Citation
-If you find our work useful in your research, please consider citing:
+## Quick Start
 
-## License
-[Appropriate license details]
+```bash
+# Clone repository
+git clone https://github.com/Moncef-Bj/GAF-Net-for-Video-Based-Person-Re-Identification.git
+cd GAF-Net-for-Video-Based-Person-Re-Identification
 
-## Contact
-For any queries regarding the code or the paper, feel free to reach out to us.
-
-## Updates
-This README and the associated repository are currently under construction and will be updated with more information soon.
+# Setup environment (coming soon)
+pip install -r requirements.txt
