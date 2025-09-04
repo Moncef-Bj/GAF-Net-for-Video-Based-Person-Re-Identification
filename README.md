@@ -1,6 +1,6 @@
 # GAF-Net: Video-Based Person Re-Identification via Appearance and Gait Recognitions
 
-[![Paper](https://img.shields.io/badge/Paper-VISAPP%202024-blue)](www.scitepress.org/Link.aspx?doi=10.5220/0012364200003660)
+[![Paper](https://img.shields.io/badge/Paper-VISAPP%202024-blue)](https://www.scitepress.org/Link.aspx?doi=10.5220/0012364200003660)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 > Implementation of "GAF-Net: Video-Based Person Re-Identification via Appearance and Gait Recognitions" presented at VISAPP 2024.
