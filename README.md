@@ -29,8 +29,7 @@ Our main contribution is the novel fusion of skeleton-based gait features with a
   - MGH [Yan et al., 2020]
   - PiT [Zang et al., 2022]
 
-**Phase 3: Fusion **
-
+**Phase 3: Fusion**
 
 - Weighted concatenation of skeleton-based gait + appearance features
 - First approach to use skeleton-based (not silhouette) gait with appearance
