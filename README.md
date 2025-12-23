@@ -34,8 +34,11 @@ Video-based person re-identification (Re-ID) is a challenging task aiming to mat
 ##  Installation
 
 ```bash
-git clone https://github.com/moncefboujou/gaf-net.git
-cd gaf-net
+# Clone the repository
+git clone https://github.com/Moncef-Bj/GAF-Net-for-Video-Based-Person-Re-Identification.git
+cd GAF-Net-for-Video-Based-Person-Re-Identification
+
+# Install dependencies
 pip install -r requirements.txt
 ```
 
@@ -57,12 +60,16 @@ Download the pre-computed embeddings and pose data from Google Drive:
 Extract the zip in the repository root:
 
 ```bash
+# Linux/Mac
 unzip gaf-net-data.zip -d .
+
+# Windows (PowerShell)
+Expand-Archive -Path gaf-net-data.zip -DestinationPath .
 ```
 
 This will create:
 ```
-gaf-net/
+GAF-Net-for-Video-Based-Person-Re-Identification/
 ├── embeddings/           # Pre-computed embeddings for evaluation
 │   └── ilids/
 │       ├── pit/          # PiT appearance embeddings (9216-d)
@@ -78,7 +85,7 @@ gaf-net/
 ##  Repository Structure
 
 ```
-gaf-net/
+GAF-Net-for-Video-Based-Person-Re-Identification/
 ├── README.md
 ├── requirements.txt
 ├── evaluate.py                 # Main evaluation script (reproduces paper results)
@@ -126,6 +133,30 @@ OSNET      gait1    0.90   70.93      89.60      79.14      70.93      ✓
 ======================================================================
 ```
 
+##  Troubleshooting
+
+### Common Issues
+
+**1. ModuleNotFoundError: No module named 'torchreid'**
+```bash
+pip install torchreid
+# or
+pip install git+https://github.com/KaiyangZhou/deep-person-reid.git
+```
+
+**2. FileNotFoundError: embeddings/ilids/...**
+```
+Make sure you downloaded and extracted gaf-net-data.zip in the repository root.
+```
+
+**3. Results don't match paper exactly**
+```
+Ensure you're using the correct lambda values:
+- PiT: λ = 0.74
+- MGH: λ = 0.84
+- OSNet: λ = 0.90
+```
+
 ##  Method
 
 ### Fusion Strategy
@@ -151,7 +182,7 @@ Video Sequence
       │                                      │
       ▼                                      ▼
 ┌─────────────────┐              ┌─────────────────┐
-│  Pose Estimator │              │  Appearance CNN │
+│  Pose Estimator │              │  Appearance     │
 │  (YOLO-Pose)    │              │ (PiT/MGH/OSNet) │
 └─────────────────┘              └─────────────────┘
       │                                      │
