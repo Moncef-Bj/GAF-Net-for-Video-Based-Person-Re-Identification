@@ -15,6 +15,18 @@ Official implementation of **"GAF-Net: Video-Based Person Re-Identification via 
 
 Video-based person re-identification (Re-ID) is a challenging task aiming to match individuals across various cameras based on video sequences. While most existing Re-ID techniques focus solely on appearance information, including gait information could potentially improve person Re-ID systems. In this study, we propose GAF-Net, a novel approach that integrates appearance with gait features for re-identifying individuals; the appearance features are extracted from RGB tracklets while the gait features are extracted from skeletal pose estimation. These features are then combined into a single feature allowing the re-identification of individuals.
 
+
+**This repository provides:**
+- Evaluation script to reproduce paper results
+- Pre-computed embeddings (appearance + gait)
+- GaitGraph training code adapted for iLIDS-VID
+- Pose data for training
+
+**This repository does not provide:**
+- Appearance model training (PiT/MGH/OSNet) — use original repos
+- End-to-end inference pipeline (video → Re-ID)
+- Pre-trained GaitGraph weights (coming soon)
+
 ##  Results on iLIDS-VID
 
 | Method | Gait | Rank-1 | Rank-5 | Rank-10 | Rank-20 | λ |
