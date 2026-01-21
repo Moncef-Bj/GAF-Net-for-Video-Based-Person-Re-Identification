@@ -5,7 +5,7 @@
 [![Python](https://img.shields.io/badge/Python-3.8+-green)](https://python.org)
 [![PyTorch](https://img.shields.io/badge/PyTorch-1.9+-red)](https://pytorch.org)
 
-Official implementation of **"GAF-Net: Video-Based Person Re-Identification via Appearance and Gait Recognitions"** (VISAPP 2024).
+Official implementation of **GAF-Net: Video-Based Person Re-Identification via Appearance and Gait Recognitions** (VISAPP 2024).
 
 **Authors:** Moncef Boujou, Rabah Iguernaissi, Lionel Nicod, Djamal Merad, Séverine Dubuisson
 
