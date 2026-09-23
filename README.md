@@ -352,7 +352,7 @@ The follow-up study can be cited as:
 ```bibtex
 @article{boujou2024indepth,
   title={In-Depth Analysis of GAF-Net: Comparative Fusion Approaches in Video-Based Person Re-Identification},
-  author={Boujou, Moncef and Iguernaissi, Rabah and Nicod, Lionel and Merad, Djamal and Dubuisson, S{\\'e}verine},
+  author={Boujou, Moncef and Iguernaissi, Rabah and Nicod, Lionel and Merad, Djamal and Dubuisson, Séverine},
   journal={Algorithms},
   volume={17},
   number={8},
