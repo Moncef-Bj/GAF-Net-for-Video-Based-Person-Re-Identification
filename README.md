@@ -1,6 +1,7 @@
 # GAF-Net: Video-Based Person Re-Identification via Appearance and Gait Recognitions
 
 [![Paper](https://img.shields.io/badge/Paper-VISAPP%202024-blue)](https://doi.org/10.5220/0012364200003660)
+[![Follow-up paper](https://img.shields.io/badge/Paper-Algorithms%202024-blue)](https://doi.org/10.3390/a17080352)
 [![HAL](https://img.shields.io/badge/HAL-hal--04524979-orange)](https://amu.hal.science/hal-04524979)
 [![Python](https://img.shields.io/badge/Python-3.8+-green)](https://python.org)
 [![PyTorch](https://img.shields.io/badge/PyTorch-1.9+-red)](https://pytorch.org)
