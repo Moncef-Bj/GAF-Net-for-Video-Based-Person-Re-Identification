@@ -5,7 +5,7 @@
 [![Python](https://img.shields.io/badge/Python-3.8+-green)](https://python.org)
 [![PyTorch](https://img.shields.io/badge/PyTorch-1.9+-red)](https://pytorch.org)
 
-Official implementation of **GAF-Net: Video-Based Person Re-Identification via Appearance and Gait Recognitions** (VISAPP 2024).
+Official implementation of **GAF-Net: Video-Based Person Re-Identification via Appearance and Gait Recognitions** (VISAPP 2024). The follow-up paper, **In-Depth Analysis of GAF-Net: Comparative Fusion Approaches in Video-Based Person Re-Identification** (*Algorithms* 2024), evaluates additional fusion strategies on iLIDS-VID and MARS. The results of that paper are documented below; the code and downloadable embeddings in this repository currently support the original iLIDS-VID evaluation only.
 
 **Authors:** Moncef Boujou, Rabah Iguernaissi, Lionel Nicod, Djamal Merad, Séverine Dubuisson
 
@@ -42,6 +42,23 @@ Video-based person re-identification (Re-ID) is a challenging task aiming to mat
 | PiT | 92.07% | **93.07%** | +1.00% |
 | MGH | 85.60% | **90.40%** | +4.80% |
 | OSNet | 59.20% | **70.93%** | +11.73% |
+
+## Publications and reported results
+
+1. M. Boujou et al., [GAF-Net: Video-Based Person Re-Identification via Appearance and Gait Recognitions](https://doi.org/10.5220/0012364200003660), VISAPP 2024.
+2. M. Boujou et al., [In-Depth Analysis of GAF-Net: Comparative Fusion Approaches in Video-Based Person Re-Identification](https://doi.org/10.3390/a17080352), *Algorithms* 17(8), 352, 2024.
+
+The following values are **reported in the Algorithms paper**, not independently reproduced by this repository. All scores are percentages. They are also recorded with provenance in [results/algorithms_2024.csv](results/algorithms_2024.csv).
+
+| Dataset | Method / appearance backbone | mAP | Rank-1 | Rank-5 | Rank-10 | Rank-20 | Source |
+|---|---|---:|---:|---:|---:|---:|---|
+| iLIDS-VID | GAF-Net, concatenation / PiT | — | 93.07 | 99.34 | 99.94 | 100.00 | Algorithms, Table 5 |
+| iLIDS-VID | GAF-Net, score-level fusion / PiT | — | 93.20 | 99.27 | 99.86 | 100.00 | Algorithms, Table 5 |
+| MARS | GAF-Net, MGH + PCA conditional concatenation | 86.09 | 89.78 | 96.90 | 98.04 | 98.59 | Algorithms, Table 10 |
+
+**Reporting note:** Table 3 of *Algorithms* gives 99.26 for the score-level fusion Rank-5 result, while the comparison in Table 5 gives 99.27. The table above follows Table 5; please check the publisher's article when using that metric. The 93.20 Rank-1 and 99.34 Rank-5 results belong to different iLIDS-VID fusion configurations and should not be combined into a single leaderboard entry.
+
+**Reproducibility scope:** `evaluate.py` and the linked embeddings cover the VISAPP 2024 iLIDS-VID feature concatenation experiment. They do **not** reproduce the Algorithms score-level result or the MARS result. There is currently no MARS evaluation script, MARS embeddings, or released checkpoint here for those claims.
 
 ##  Installation
 
@@ -316,7 +333,7 @@ python evaluate.py iLIDS /path/to/test_split0.csv \
 
 ##  Citation
 
-If you find this work useful, please cite our paper:
+If you find this work useful, please cite the relevant paper:
 
 ```bibtex
 @inproceedings{boujou2024gafnet,
@@ -327,6 +344,21 @@ If you find this work useful, please cite our paper:
   year={2024},
   organization={SCITEPRESS},
   doi={10.5220/0012364200003660}
+}
+```
+
+The follow-up study can be cited as:
+
+```bibtex
+@article{boujou2024indepth,
+  title={In-Depth Analysis of GAF-Net: Comparative Fusion Approaches in Video-Based Person Re-Identification},
+  author={Boujou, Moncef and Iguernaissi, Rabah and Nicod, Lionel and Merad, Djamal and Dubuisson, Séverine},
+  journal={Algorithms},
+  volume={17},
+  number={8},
+  pages={352},
+  year={2024},
+  doi={10.3390/a17080352}
 }
 ```
 

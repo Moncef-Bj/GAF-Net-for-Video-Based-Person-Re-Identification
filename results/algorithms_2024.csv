@@ -1,0 +1,4 @@
+paper_doi,dataset,method,appearance_backbone,metric_unit,mAP,rank1,rank5,rank10,rank20,source_table,verification
+10.3390/a17080352,iLIDS-VID,feature concatenation,PiT,percent,,93.07,99.34,99.94,100.00,5,paper-reported; evaluation assets for original iLIDS-VID experiment only
+10.3390/a17080352,iLIDS-VID,score-level fusion,PiT,percent,,93.20,99.27,99.86,100.00,5,paper-reported; Table 3 gives Rank-5 99.26; no reproduction code here
+10.3390/a17080352,MARS,MGH + PCA conditional concatenation,MGH,percent,86.09,89.78,96.90,98.04,98.59,10,paper-reported; no MARS evaluation assets here
