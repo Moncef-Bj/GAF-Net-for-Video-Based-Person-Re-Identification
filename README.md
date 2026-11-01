@@ -18,7 +18,7 @@ Video-based person re-identification (Re-ID) is a challenging task aiming to mat
 
 
 **This repository provides:**
-- Evaluation script to reproduce paper results
+- Evaluation script for the VISAPP 2024 iLIDS-VID feature-concatenation experiment using pre-computed embeddings
 - Pre-computed embeddings (appearance + gait)
 - GaitGraph training code adapted for iLIDS-VID
 - Pose data for training
@@ -28,21 +28,19 @@ Video-based person re-identification (Re-ID) is a challenging task aiming to mat
 - End-to-end inference pipeline (video → Re-ID)
 - Pre-trained GaitGraph weights (coming soon)
 
-##  Results on iLIDS-VID
+## Reproducible evaluation scope: iLIDS-VID feature concatenation
 
-| Method | Gait | Rank-1 | Rank-5 | Rank-10 | Rank-20 | λ |
-|--------|------|--------|--------|---------|---------|---|
-| **GAF-Net (PiT)** | gait1 | **93.07%** | 99.27% | 99.74% | 99.94% | 0.74 |
-| **GAF-Net (MGH)** | gait2 | **90.40%** | 98.66% | 98.99% | 99.66% | 0.84 |
-| **GAF-Net (OSNet)** | gait1 | **70.93%** | 88.40% | 93.00% | 96.54% | 0.90 |
+This repository supports independently running the VISAPP 2024 iLIDS-VID feature-concatenation evaluation using the linked pre-computed appearance and gait embeddings. `evaluate.py` evaluates 10 splits and reports their mean CMC and mAP metrics.
 
-### Improvement over Appearance-Only Baselines
+| Backbone | Gait embeddings | Default λ | Reference Rank-1 (%) |
+|---|---|---:|---:|
+| PiT | gait1 | 0.74 | 93.07 |
+| MGH | gait2 | 0.84 | 90.40 |
+| OSNet | gait1 | 0.90 | 70.93 |
 
-| Backbone | Appearance Only | GAF-Net (+ Gait) | Improvement |
-|----------|-----------------|------------------|-------------|
-| PiT | 92.07% | **93.07%** | +1.00% |
-| MGH | 85.60% | **90.40%** | +4.80% |
-| OSNet | 59.20% | **70.93%** | +11.73% |
+The reference Rank-1 values above are stored in `evaluate.py` as `paper_rank1`; they are comparison targets, not measurements from a new execution. Actual Rank-1, Rank-5, Rank-10 and mAP values are computed from the supplied embeddings.
+
+This is evaluation from pre-computed features, not an end-to-end reproduction of model training or video-to-Re-ID inference. The Algorithms 2024 results below are separately reported publication results and must not be presented as outputs verified by this evaluation script.
 
 ## Publications and reported results
 
@@ -59,7 +57,7 @@ The following values are **reported in the Algorithms paper**, not independently
 
 **Reporting note:** Table 3 of *Algorithms* gives 99.26 for the score-level fusion Rank-5 result, while the comparison in Table 5 gives 99.27. The table above follows Table 5; please check the publisher's article when using that metric. The 93.20 Rank-1 and 99.34 Rank-5 results belong to different iLIDS-VID fusion configurations and should not be combined into a single leaderboard entry.
 
-**Reproducibility scope:** `evaluate.py` and the linked embeddings cover the VISAPP 2024 iLIDS-VID feature concatenation experiment. They do **not** reproduce the Algorithms score-level result or the MARS result. There is currently no MARS evaluation script, MARS embeddings, or released checkpoint here for those claims.
+**Reproducibility scope:** The independently runnable evaluation provided here is the VISAPP 2024 iLIDS-VID feature-concatenation experiment using the linked pre-computed embeddings. The table above records results reported in Algorithms 2024; it is not a verified execution log of this repository. Its iLIDS-VID concatenation row must not be substituted for measured `evaluate.py` output merely because the Rank-1 reference is also 93.07%. The iLIDS-VID score-level fusion and MARS experiments are outside the released evaluation workflow; the repository does not provide the evaluation scripts, embeddings and checkpoints needed to reproduce those experiments.
 
 ##  Installation
 
@@ -118,7 +116,7 @@ GAF-Net-for-Video-Based-Person-Re-Identification/
 GAF-Net-for-Video-Based-Person-Re-Identification/
 ├── README.md
 ├── requirements.txt
-├── evaluate.py                 # Main evaluation script (reproduces paper results)
+├── evaluate.py                 # iLIDS-VID feature-concatenation evaluation from embeddings
 ├── embeddings/                 # (download from Google Drive)
 ├── poses/                      # (download from Google Drive)
 └── gaitgraph/                  # Modified GaitGraph code
@@ -135,7 +133,7 @@ GAF-Net-for-Video-Based-Person-Re-Identification/
 
 ##  Quick Start
 
-### Reproduce Paper Results
+### Run the iLIDS-VID Feature-Concatenation Evaluation
 
 ```bash
 # Download and extract data first (see above)
@@ -150,18 +148,21 @@ python evaluate.py --backbone pit
 python evaluate.py --backbone mgh --lambda_val 0.84
 ```
 
-Expected output:
-```
-======================================================================
-FINAL SUMMARY
-======================================================================
-Backbone   Gait     λ      Rank-1     Rank-5     mAP        Paper     
-----------------------------------------------------------------------
-PIT        gait1    0.74   93.07      99.33      95.80      93.07      
-MGH        gait2    0.84   90.40      98.67      94.01      90.40      
-OSNET      gait1    0.90   70.93      89.60      79.14      70.93      
-======================================================================
-```
+### Reading the final summary
+
+For `python evaluate.py` with the default fusion weights, the `FINAL SUMMARY` columns appear in the following order. This is an output-schema table, not a captured execution: `<computed>` denotes a value calculated from the downloaded embeddings.
+
+| Backbone | Gait | λ | Rank-1 | Rank-5 | mAP | Paper | Match |
+|---|---|---:|---|---|---|---:|---|
+| PIT | gait1 | 0.74 | `<computed>` | `<computed>` | `<computed>` | 93.07 | `<computed>` |
+| MGH | gait2 | 0.84 | `<computed>` | `<computed>` | `<computed>` | 90.40 | `<computed>` |
+| OSNET | gait1 | 0.90 | `<computed>` | `<computed>` | `<computed>` | 70.93 | `<computed>` |
+
+Rank-1, Rank-5, mAP and Paper are percentages, printed to two decimal places. `Paper` is the configured VISAPP 2024 Rank-1 reference. `Match` is `✓` when the absolute difference between the unrounded computed Rank-1 and that reference is strictly less than 0.5 percentage points; otherwise it is `✗`. It does not check Rank-5, mAP, or any Algorithms 2024 result.
+
+Mean Rank-10 is printed in each backbone's detailed results, but is not included in `FINAL SUMMARY`. Rank-20 is not printed.
+
+A numerical expected-output example should be added only alongside a verified run identifying the repository revision, embedding archive and command used.
 
 ##  Troubleshooting
 
@@ -200,7 +201,7 @@ z_i = [normalize(z_appearance), λ · normalize(z_gait)]
 Where:
 - `z_appearance`: Appearance embedding from PiT/MGH/OSNet
 - `z_gait`: Gait embedding from GaitGraph (128-d)
-- `λ`: Fusion weight, λ ∈ [0.6, 0.8] recommended
+- `λ`: Fusion weight; evaluation defaults are 0.74 for PiT, 0.84 for MGH and 0.90 for OSNet. Override with `--lambda_val`.
 - `normalize()`: L2 normalization
 
 ### Architecture Overview
